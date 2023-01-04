@@ -25,7 +25,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}
+                                <th scope="row">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}
                                 </th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>
@@ -46,14 +46,8 @@
                                 </td>
                                 <td><img src="/storage/{{ $item->image }}" alt="" width="75px"></td>
                                 <td>
-                                    <a href="{{ route('product.edit', ['product' => $item->id]) }}"
-                                        class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('product.destroy', ['product' => $item->id]) }}" class="d-inline"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <a href="{{ route('checkout.create', ['product_id' => $item->id, 'qty' => 1]) }}"
+                                        class="btn btn-primary">Beli</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -73,7 +67,7 @@
                     </tfoot>
                 </table>
                 <br>
-                {{-- {{ $data->withQueryString()->links() }} --}}
+                {{ $data->withQueryString()->links() }}
             </div>
             <!-- /.card-body -->
         </div>

@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
         $categories = Category::get();
         $image = "images/product/200.png";
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Product::create([
                 "name" => $faker->sentence(1),
                 "description" => $faker->sentence(2),

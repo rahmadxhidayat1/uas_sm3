@@ -25,7 +25,6 @@ class ProductController extends Controller
         $filter = $request->input('filter');
         $data =Cache::remember('all-products', 60, function () use($search, $filter) {
             $data = Product::with(['category']);
-
         if ($search) {
             $data->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%$search%")
