@@ -1,6 +1,17 @@
 @extends('admin.layouts.index')
 
 @section('content')
+    <div class="col-3">
+        <form method="GET" action="{{ route('checkout.index') }}">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Cari Products..."
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button  class="btn btn-warning opacity-50" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -25,7 +36,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <th scope="row">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}
+                                <th scope="row">{{$loop->iteration}}
                                 </th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>

@@ -183,7 +183,7 @@
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" class="d-inline" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Logout</button>
+                        <button type="submit" class="btn btn-secondary">Logout</button>
                     </form>
                 </li>
             </ul>

@@ -6,6 +6,7 @@
             <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
             </div>
+            <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Input</a>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
