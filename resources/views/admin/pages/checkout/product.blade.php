@@ -1,12 +1,22 @@
 @extends('admin.layouts.index')
 
 @section('content')
+    <div class="col-3">
+        <form method="GET" action="{{ route('checkout.index') }}">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Cari Products..."
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button  class="btn btn-warning opacity-50" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
             </div>
-            <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Input</a>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -26,7 +36,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}
+                                <th scope="row">{{$loop->iteration}}
                                 </th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>
@@ -47,14 +57,8 @@
                                 </td>
                                 <td><img src="/storage/{{ $item->image }}" alt="" width="75px"></td>
                                 <td>
-                                    <a href="{{ route('product.edit', ['product' => $item->id]) }}"
-                                        class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('product.destroy', ['product' => $item->id]) }}" class="d-inline"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <a href="{{ route('checkout.create', ['product_id' => $item->id, 'qty' => 1]) }}"
+                                        class="btn btn-primary">Beli</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -74,7 +78,7 @@
                     </tfoot>
                 </table>
                 <br>
-                {{-- {{ $data->withQueryString()->links() }} --}}
+                {{ $data->withQueryString()->links() }}
             </div>
             <!-- /.card-body -->
         </div>
